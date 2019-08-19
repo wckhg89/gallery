@@ -10,7 +10,7 @@
 
 ## 로컬 환경 실행
 
-1. 몽고 DB 실행
+### 1.몽고 DB 실행
 
 ```bash
 > cd src/docker
@@ -25,7 +25,7 @@ c0b28ea19748
 ```
 
 
-2. 스프링 어플리케이션 실행
+###2.스프링 어플리케이션 실행
 
 ```bash
 ...
@@ -40,9 +40,10 @@ c0b28ea19748
 ```
 
 
-3. 프론트앤드 dev-server 실행
+###3.프론트앤드 dev-server 실행
 
-3.1 node 설치 (MAC OS)
+3.1node 설치 (MAC OS)
+
 ```bash
 > brew install nvm 
 > mkdir ~/.nvm
@@ -83,7 +84,8 @@ lts/dubnium -> v10.16.3
 Now using node v10.16.3 (npm v6.9.0)
 ```
 
-3.2 Node Modules 의존성 설치
+3.2Node Modules 의존성 설치
+
 ```bash
 > cd src/front
 > pwd
@@ -91,7 +93,8 @@ Now using node v10.16.3 (npm v6.9.0)
 > npm install
 ```
 
-3.3 webpack-dev-server 실행
+3.3webpack-dev-server 실행
+
 ```bash
 > cd src/front
 > pwd
