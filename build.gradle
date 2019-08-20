@@ -15,6 +15,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: "com.moowork.node"
 
 group = 'com.guppy'
 version = '0.0.1-SNAPSHOT'
@@ -33,6 +34,27 @@ repositories {
 ext {
     set('snippetsDir', file("build/generated-snippets"))
 }
+
+node {
+    npmVersion = '6.9.0'
+    version = '10.16.3'
+    download = true
+}
+
+task moduleInstall(type: NpmTask) {
+    println file("$project.projectDir/src/front")
+    workingDir file("$project.projectDir/src/front")
+    args = ['install']
+}
+
+task frontBuild(type: NpmTask, dependsOn: 'moduleInstall') {
+    println file("$project.projectDir/src/front")
+    workingDir file("$project.projectDir/src/front")
+    args = ['run', 'build']
+}
+
+
+processResources.dependsOn 'frontBuild'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
