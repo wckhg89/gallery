@@ -112,3 +112,59 @@ Now using node v10.16.3 (npm v6.9.0)
 
 ## 프로젝트 빌드
 
+### 빌드 스크립트 (build.gradle)
+```bash
+// node 빌드 가능하도록 플러그인 추가
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.moowork.gradle:gradle-node-plugin:1.3.1"
+    }
+}
+
+...
+
+// node 빌드 플러그인 적용
+apply plugin: "com.moowork.node"
+
+...
+
+
+// 빌드시 사용할 버전 명시
+node {
+    npmVersion = '6.9.0'
+    version = '10.16.3'
+    download = true
+}
+
+
+// npm install task
+task moduleInstall(type: NpmTask) {
+    println file("$project.projectDir/src/front")
+    workingDir file("$project.projectDir/src/front")
+    args = ['install']
+}
+
+// npm run build task
+task frontBuild(type: NpmTask, dependsOn: 'moduleInstall') {
+    println file("$project.projectDir/src/front")
+    workingDir file("$project.projectDir/src/front")
+    args = ['run', 'build']
+}
+
+...
+
+// build 시 함께 실행되도록 의존관계 추가
+processResources.dependsOn 'frontBuild'
+
+```
+
+### JAR 빌드 방법
+
+```bash
+> ./gradlew build
+```
