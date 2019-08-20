@@ -5,6 +5,7 @@ build/
 !**/src/main/**
 !**/src/test/**
 **/src/front/node_modules/**
+**/src/main/resources/static/**
 
 ### STS ###
 .apt_generated
