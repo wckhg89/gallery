@@ -5,3 +5,8 @@ spring:
   mustache:
     prefix: classpath:/static/
     suffix: .html
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/guppy
+      password: root
+      username: example

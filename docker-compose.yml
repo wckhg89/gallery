@@ -1,0 +1,29 @@
+version: '3.0'
+services:
+  nginx:
+    build:
+      context: ./
+      dockerfile: docker/nginx/Dockerfile
+    image: guppy/nginx:0.0
+    depends_on:
+      - was
+    ports:
+      - 80:80
+  mongo:
+    build:
+      context: ./
+      dockerfile: docker/mongodb/Dockerfile
+    image: guppy/mongo:0.0
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  was:
+    build:
+      context: ./
+      dockerfile: docker/was/Dockerfile
+      args:
+        JAR_FILE: build/libs/*.jar
+    image: guppy/was:0.0
+    depends_on:
+      - mongo

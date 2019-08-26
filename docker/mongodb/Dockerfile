@@ -1,1 +1,1 @@
-FROM mongodb
+FROM mongo
