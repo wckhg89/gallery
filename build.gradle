@@ -59,10 +59,10 @@ processResources.dependsOn 'frontBuild'
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation('org.apache.httpcomponents:httpasyncclient')
 
     compile('org.springframework.restdocs:spring-restdocs-restassured')
-    compile 'org.springframework.data:spring-data-mongodb:2.1.9.RELEASE'
     compileOnly 'org.projectlombok:lombok'
     compileOnly("org.springframework.boot:spring-boot-configuration-processor")
 
@@ -80,4 +80,8 @@ dependencies {
     testCompile('io.rest-assured:spring-mock-mvc')
     testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
     testCompile('org.springframework.restdocs:spring-restdocs-restassured')
+}
+
+bootJar {
+    archiveVersion = null
 }
