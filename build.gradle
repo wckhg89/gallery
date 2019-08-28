@@ -14,70 +14,100 @@ plugins {
     id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-apply plugin: "com.moowork.node"
+subprojects() {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: "io.spring.dependency-management"
+    apply plugin: 'groovy'
 
-group = 'com.guppy'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+    group = 'com.guppy'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '1.8'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
     }
 }
 
-repositories {
-    mavenCentral()
-}
+project(':gallery-web') {
+    apply plugin: "com.moowork.node"
 
-ext {
-    set('snippetsDir', file("build/generated-snippets"))
-}
-
-node {
-    npmVersion = '6.9.0'
-    version = '10.16.3'
-    download = true
-}
-
-task moduleInstall(type: NpmTask) {
-    println file("$project.projectDir/src/front")
-    workingDir file("$project.projectDir/src/front")
-    args = ['install']
-}
-
-task frontBuild(type: NpmTask, dependsOn: 'moduleInstall') {
-    println file("$project.projectDir/src/front")
-    workingDir file("$project.projectDir/src/front")
-    args = ['run', 'build']
-}
-
-
-processResources.dependsOn 'frontBuild'
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-mustache'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation('org.apache.httpcomponents:httpasyncclient')
-
-    compile('org.springframework.restdocs:spring-restdocs-restassured')
-    compile 'org.springframework.data:spring-data-mongodb:2.1.9.RELEASE'
-    compileOnly 'org.projectlombok:lombok'
-    compileOnly("org.springframework.boot:spring-boot-configuration-processor")
-
-
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude module: 'junit' // exclude junit4
+    ext {
+        set('snippetsDir', file("build/generated-snippets"))
     }
 
-    // add junit5
-    testImplementation('org.junit.jupiter:junit-jupiter-api:5.2.0')
-    testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')
-    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
+    node {
+        npmVersion = '6.9.0'
+        version = '10.16.3'
+        download = true
+    }
 
-    testCompile('io.rest-assured:spring-mock-mvc')
-    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
-    testCompile('org.springframework.restdocs:spring-restdocs-restassured')
+    task moduleInstall(type: NpmTask) {
+        println file("$project.projectDir/src/front")
+        workingDir file("$project.projectDir/src/front")
+        args = ['install']
+    }
+
+    task frontBuild(type: NpmTask, dependsOn: 'moduleInstall') {
+        println file("$project.projectDir/src/front")
+        workingDir file("$project.projectDir/src/front")
+        args = ['run', 'build']
+    }
+
+    processResources.dependsOn 'frontBuild'
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-mustache'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation('org.apache.httpcomponents:httpasyncclient')
+
+        compile('org.springframework.restdocs:spring-restdocs-restassured')
+        compileOnly 'org.projectlombok:lombok'
+        compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+
+
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude module: 'junit' // exclude junit4
+        }
+
+        // add junit5
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.2.0')
+        testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')
+        testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
+
+        testCompile('io.rest-assured:spring-mock-mvc')
+        testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
+        testCompile('org.springframework.restdocs:spring-restdocs-restassured')
+    }
+}
+
+project('gallery-domain') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+        compileOnly 'org.projectlombok:lombok'
+        compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude module: 'junit' // exclude junit4
+        }
+
+        // add junit5
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.2.0')
+        testCompile('org.junit.jupiter:junit-jupiter-params:5.2.0')
+        testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
+    }
+
+    compileJava.dependsOn(processResources)
 }

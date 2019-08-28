@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: local
+
+# LOCAL
+---
+spring:
+  profiles: local
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/gallery
+      password: root
+      username: example
+
+# DEV
+---
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/gallery
+      password: root
+      username: example
