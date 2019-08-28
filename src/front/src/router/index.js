@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from '../layout/Layout'
+import Episode from "../components/gallery/Episode";
+import ImageItems from "../components/gallery/ImageItems";
 import GuestBook from '../components/GuestBook'
-import Gallery from "../components/Gallery";
 
 Vue.use(VueRouter);
 
@@ -13,7 +14,11 @@ const routes = [
         children: [
             {
                 path: 'episode/:id',
-                component: Gallery
+                component: Episode,
+            },
+            {
+                path: 'images/:id',
+                component: ImageItems,
             },
             {
                 path: 'guestbook',

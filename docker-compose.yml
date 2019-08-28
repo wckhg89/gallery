@@ -15,6 +15,7 @@ services:
       dockerfile: docker/mongodb/Dockerfile
     image: guppy/mongo:0.0
     restart: always
+    # volume
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
