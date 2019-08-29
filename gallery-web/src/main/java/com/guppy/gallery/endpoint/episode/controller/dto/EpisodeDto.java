@@ -10,30 +10,35 @@ import java.util.List;
 @NoArgsConstructor
 public class EpisodeDto {
 
-    private int episodeId;
+    private long episodeId;
     private String episodeName;
     private String episodeDescription;
     private List<Image> images;
 
     @Builder
-    public EpisodeDto(int episodeId, String episodeName, String episodeDescription, List<Image> images) {
+    public EpisodeDto(long episodeId, String episodeName, String episodeDescription, List<Image> images) {
         this.episodeId = episodeId;
         this.episodeName = episodeName;
         this.episodeDescription = episodeDescription;
         this.images = images;
     }
 
+    @Getter
+    @Setter
+    @ToString
     @NoArgsConstructor
     public static class Image {
         private int index;
         private String imagePath;
         private String src;
+        private String description;
 
         @Builder
-        public Image(int index, String imagePath, String src) {
+        public Image(int index, String imagePath, String src, String description) {
             this.index = index;
             this.imagePath = imagePath;
             this.src = src;
+            this.description = description;
         }
     }
 }

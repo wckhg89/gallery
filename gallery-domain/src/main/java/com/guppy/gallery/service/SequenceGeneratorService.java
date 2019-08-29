@@ -1,7 +1,7 @@
 package com.guppy.gallery.service;
 
 import com.guppy.gallery.domain.support.DatabaseSequence;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
@@ -13,13 +13,10 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Service
+@RequiredArgsConstructor
 public class SequenceGeneratorService {
-    private MongoOperations mongoOperations;
 
-    @Autowired
-    public SequenceGeneratorService(MongoOperations mongoOperations) {
-        this.mongoOperations = mongoOperations;
-    }
+    private final MongoOperations mongoOperations;
 
     public long generateSequence(String seqName) {
         DatabaseSequence counter = mongoOperations.findAndModify(query(where("_id").is(seqName)),

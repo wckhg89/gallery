@@ -25,7 +25,7 @@ public class Episode {
 
 
     @Builder
-    public Episode(long id, int episodeSeq, String episodeName, String episodeDescription, List<Image> images) {
+    public Episode(long id, String episodeName, String episodeDescription, List<Image> images) {
         this.id = id;
         this.episodeName = episodeName;
         this.episodeDescription = episodeDescription;
@@ -38,22 +38,13 @@ public class Episode {
     @Setter
     @NoArgsConstructor
     public static class Image {
-        private long index;
         private String src;
         private String description;
 
         @Builder
-        public Image(long index, String src, String description) {
-            this.index = index;
+        public Image(String src, String description) {
             this.src = src;
             this.description = description;
-        }
-
-    }
-
-    public void generateImageIndex () {
-        for (int idx = 0 ; idx < this.images.size() ; idx ++) {
-            this.images.get(idx).index = idx;
         }
     }
 }
