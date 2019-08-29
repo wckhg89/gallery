@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserModelListener extends AbstractMongoEventListener<Episode> {
+public class EpisodeDocumentListener extends AbstractMongoEventListener<Episode> {
     private final SequenceGeneratorService sequenceGenerator;
 
     @Override
