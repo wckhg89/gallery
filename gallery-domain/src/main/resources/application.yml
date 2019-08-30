@@ -11,6 +11,16 @@ spring:
       uri: mongodb://localhost:27017/gallery
       password: root
       username: example
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
 
 # DEV
 ---

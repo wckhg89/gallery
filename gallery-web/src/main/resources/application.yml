@@ -12,8 +12,27 @@ spring:
 ---
 spring:
   profiles: local
-
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/gallery
+      password: root
+      username: example
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG
+        data:
+          mongodb:
+            core:
+              MongoTemplate: DEBUG
 # DEV
 ---
 spring:
   profiles: dev
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/gallery
+      password: root
+      username: example
