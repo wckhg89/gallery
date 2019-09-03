@@ -1,10 +1,12 @@
 package com.guppy.gallery.endpoint.episode.service;
 
 import com.guppy.gallery.endpoint.episode.controller.dto.EpisodeDto;
+import com.guppy.gallery.endpoint.episode.controller.dto.EpisodeInfoDto;
 import com.guppy.gallery.repository.EpisodeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.stream.Collectors.toList;
@@ -15,6 +17,17 @@ public class EpisodeService {
 
     private final EpisodeRepository episodeRepository;
 
+
+    public List<EpisodeInfoDto> getEpisodeInfos () {
+        return episodeRepository.findAll().stream()
+                .map(episode -> EpisodeInfoDto.builder()
+                        .episodeId("1-" + episode.getId())
+                        .episodePath("/episode/" + episode.getId())
+                        .episodeName(episode.getEpisodeName())
+                        .episodeDescription(episode.getEpisodeDescription())
+                .build())
+                .collect(toList());
+    }
 
     public EpisodeDto getEpisode(long episodeId) {
         AtomicInteger atomicInt = new AtomicInteger();

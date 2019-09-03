@@ -1,9 +1,11 @@
 package com.guppy.gallery.endpoint.episode.controller;
 
 import com.guppy.gallery.endpoint.episode.controller.dto.EpisodeDto;
+import com.guppy.gallery.endpoint.episode.controller.dto.EpisodeInfoDto;
 import com.guppy.gallery.endpoint.episode.service.EpisodeService;
 import io.restassured.http.ContentType;
 import io.restassured.module.mockmvc.response.MockMvcResponse;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +32,48 @@ class EpisodeControllerTest {
                 MockMvcBuilders.standaloneSetup(new EpisodeController(episodeService))
                         .apply(documentationConfiguration(restDocumentation))
         );
+    }
+
+    @Test
+    void givenEpisodeSaved_whenEpisodesExist_thenReturnEpisodeInfoDtoListWith200 () {
+        // Given
+        BDDMockito.given(episodeService.getEpisodeInfos()).willReturn(Lists.newArrayList(
+                EpisodeInfoDto.builder()
+                        .episodeId("1-1")
+                        .episodeName("첫번째 에피소드")
+                        .episodeDescription("첫번째 에피소드 설명")
+                        .episodePath("/episode/1")
+                .build(),
+                EpisodeInfoDto.builder()
+                        .episodeId("1-2")
+                        .episodeName("두번째 에피소드")
+                        .episodeDescription("두번째 에피소드 설명")
+                        .episodePath("/episode/2")
+                        .build(),
+                EpisodeInfoDto.builder()
+                        .episodeId("1-3")
+                        .episodeName("세번째 에피소드")
+                        .episodeDescription("세번째 에피소드 설명")
+                        .episodePath("/episode/3")
+                        .build()
+
+        ));
+
+        MockMvcResponse response = given()
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .header("Content-Type", "Application/json")
+                .when()
+                .get("/api/episodes/info");
+
+        // When
+
+        // Then
+        response.then().statusCode(200);
+        response.prettyPrint();
+        // When
+
+        // Then
     }
 
     @Test

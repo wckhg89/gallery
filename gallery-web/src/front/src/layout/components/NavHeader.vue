@@ -38,8 +38,16 @@
             }
         },
 
+        methods: {
+            fetchData() {
+                this.$store.dispatch('getEpisode', this.$route.params.id).then(() => {
+                    this.episode = this.$store.state.episode;
+                });
+            },
+        },
+
         created () {
-            // TODO: API 호출
+            this.fetchData()
         }
     }
 </script>
