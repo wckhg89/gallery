@@ -1,5 +1,5 @@
 <template>
-    <el-menu default-active="1" class="el-menu-demo" mode="horizontal" active-text-color="#F56C6C">
+    <el-menu class="el-menu-demo" mode="horizontal" active-text-color="#F56C6C">
         <el-submenu index="1">
             <template slot="title">Gallery</template>
             <el-menu-item v-for="episode in episodes" :index="episode.episodeId">
@@ -20,30 +20,21 @@
         name: "NavHeader",
         data() {
             return {
-                episodes: [
-                    {
-                        episodeId: '1-1',
-                        episodePath: '/episode/1',
-                        episodeName: 'Episode 1',
-                        episodeDescription: '첫번째 에피소드',
-                    },
-                    {
-                        episodeId: '1-2',
-                        episodePath: '/episode/2',
-                        episodeName: 'Episode 2',
-                        episodeDescription: '두번째 에피소드',
-                    },
-
-                ]
+                episodes: []
             }
         },
 
         methods: {
             fetchData() {
-                this.$store.dispatch('getEpisode', this.$route.params.id).then(() => {
-                    this.episode = this.$store.state.episode;
+                this.$store.dispatch('getEpisodeInfos').then(() => {
+                    this.episodes = this.$store.state.episode.info;
                 });
             },
+        },
+
+        beforeRouteUpdate (to, from, next) {
+            next();
+            this.fetchData();
         },
 
         created () {

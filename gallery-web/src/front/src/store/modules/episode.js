@@ -1,30 +1,56 @@
-import {getEpisode} from '../api/episode'
+import {getEpisode, getEpisodeInfos} from '../api/episode'
 
 const episode = {
     state: {
-        episodeId: '',
-        episodeName: '',
-        episodeDescription: '',
-        images: [],
+        info: [],
+        episode: {
+            episodeId: '',
+            episodeName: '',
+            episodeDescription: '',
+            images: [],
+        },
+
     },
     mutations: {
+        SET_EPISODE_INFO: (state, info) => {
+            state.info = info;
+        },
         SET_EPISODE_ID: (state, episodeId) => {
-            state.episodeId = episodeId;
+            state.episode.episodeId = episodeId;
         },
 
         SET_EPISODE_NAME: (state, episodeName) => {
-            state.episodeName = episodeName;
+            state.episode.episodeName = episodeName;
         },
 
         SET_EPISODE_DESCRIPTION: (state, episodeDescription) => {
-            state.episodeDescription = episodeDescription;
+            state.episode.episodeDescription = episodeDescription;
         },
 
         SET_EPISODE_IMAGES: (state, images) => {
-            state.images = images;
+            state.episode.images = images;
         },
+
     },
     actions: {
+        getEpisodeInfos({commit}) {
+            return new Promise((resolve, reject) => {
+                getEpisodeInfos()
+                    .then(resp => {
+                        if (resp.status !== 200) {
+                            reject('Invalid status', resp.status);
+                        }
+
+                        commit('SET_EPISODE_INFO', resp.data);
+
+                        resolve(resp);
+                    })
+                    .catch(err => {
+                        reject(err);
+                    });
+            })
+        },
+
         getEpisode({commit}, episodeId) {
             return new Promise((resolve, reject) => {
                 getEpisode(episodeId)

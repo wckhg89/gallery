@@ -12,6 +12,7 @@
 
 <script>
     import {Waterfall, WaterfallItem} from 'vue2-waterfall';
+    import _ from 'lodash';
 
     export default {
         name: "Episode",
@@ -29,7 +30,9 @@
             fetchData() {
                 this.loading = true;
                 this.$store.dispatch('getEpisode', this.$route.params.id).then(() => {
-                    this.episode = this.$store.state.episode;
+                    this.episode = this.$store.state.episode.episode;
+                }).then(() => {
+                    this.episode.images = _.shuffle(this.episode.images);
                 });
                 setTimeout(() => {
                     this.loading =false;
@@ -77,8 +80,8 @@
     }
 
     .animated {
-        -webkit-animation-duration: 2s;
-        animation-duration: 2s;
+        -webkit-animation-duration: 3s;
+        animation-duration: 3s;
         -webkit-animation-fill-mode: both;
         animation-fill-mode: both;
         -webkit-animation-direction: normal;
