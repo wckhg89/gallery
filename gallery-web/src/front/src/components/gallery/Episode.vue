@@ -12,7 +12,6 @@
 
 <script>
     import {Waterfall, WaterfallItem} from 'vue2-waterfall';
-    import _ from 'lodash';
 
     export default {
         name: "Episode",
@@ -29,15 +28,21 @@
         methods: {
             fetchData() {
                 this.loading = true;
-                this.$store.dispatch('getEpisode', this.$route.params.id).then(() => {
-                    this.episode = this.$store.state.episode.episode;
+                this.$store.dispatch('getEpisodeDetail', this.$route.params.id).then(() => {
+                    this.episode = this.$store.state.episode.detail;
                 }).then(() => {
-                    this.episode.images = _.shuffle(this.episode.images);
+                    this.setImagePath();
                 });
                 setTimeout(() => {
                     this.loading =false;
                 }, 500);
             },
+
+            setImagePath () {
+                this.episode.images.map((it) => {
+                    it.imagePath = this.$route.path + it.imagePath;
+                })
+            }
         },
 
         beforeRouteUpdate (to, from, next) {
@@ -60,7 +65,6 @@
         border-radius: 5px;
         width: 100%;
         display: block;
-        transition: transform .5s cubic-bezier(.55,0,.1,1);
     }
     @-webkit-keyframes fadeIn {
         from {

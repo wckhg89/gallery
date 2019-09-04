@@ -6,10 +6,10 @@
                 <router-link :to="episode.episodePath">{{episode.episodeName}}</router-link>
             </el-menu-item>
         </el-submenu>
-        <el-menu-item>
+        <el-menu-item index="2">
             <el-divider direction="vertical"></el-divider>
         </el-menu-item>
-        <el-menu-item index="2">
+        <el-menu-item index="3">
             <router-link to="/guestbook">GuestBook</router-link>
         </el-menu-item>
     </el-menu>

@@ -15,21 +15,33 @@ const routes = [
             {
                 path: '/',
                 component: Episode,
-            },
+            }
+        ]
+    },
+    {
+        path: '/episode',
+        component: Layout,
+        children: [
             {
-                path: 'episode/:id',
+                path: ':id',
                 component: Episode,
             },
             {
-                path: 'images/:id',
+                path: ':episodeId/images/:imageId',
                 component: ImageItems,
-            },
-            {
-                path: 'guestbook',
-                component: GuestBook
-            },
+            }
         ]
     },
+    {
+        path: '/guestbook',
+        component: Layout,
+        children: [
+            {
+                path: '/',
+                component: GuestBook,
+            }
+        ]
+    }
 
 ];
 

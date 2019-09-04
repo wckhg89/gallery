@@ -4,6 +4,6 @@ export function getEpisodeInfos () {
     return axios.get('/api/episodes/info');
 }
 
-export function getEpisode(episodeId) {
+export function getEpisodeDetail(episodeId) {
     return axios.get('/api/episodes/' + episodeId);
 }
