@@ -3,12 +3,7 @@ import {getEpisodeDetail, getEpisodeInfos} from '../api/episode'
 const episode = {
     state: {
         info: [],
-        detail: {
-            episodeId: '',
-            episodeName: '',
-            episodeDescription: '',
-            images: [],
-        },
+        detail: {},
     },
     mutations: {
         SET_EPISODE_INFO: (state, info) => {

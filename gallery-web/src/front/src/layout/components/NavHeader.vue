@@ -34,10 +34,12 @@
 
         beforeRouteUpdate (to, from, next) {
             next();
+            console.log(this.$route.path);
             this.fetchData();
         },
 
         created () {
+            console.log(this.$route.path);
             this.fetchData()
         }
     }
