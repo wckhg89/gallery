@@ -3,10 +3,12 @@
         <el-button icon="el-icon-edit" circle @click="open"></el-button>
         <el-timeline
                 v-infinite-scroll="load"
-                infinite-scroll-disabled="disabled">
+                infinite-scroll-disabled="disabled"
+                infinite-scroll-distance="10"
+        >
             <el-timeline-item
                     v-for="(guestBook, idx) in guestBooks"
-                    :timestamp="guestBook.createdAt" placement="top" color="#F56C6C">
+                    :timestamp="guestBook.createdDate" placement="top" color="#F56C6C">
                 <el-card>
                     <h4>{{guestBook.content}}</h4>
                 </el-card>
@@ -22,54 +24,56 @@
         name: 'GuestBook',
         data() {
             return {
-                guestBooks : [
-                    {
-                        content: 'blah.blah.blah.blah.blah.blah.',
-                        createdAt: '2019/09/05 20:46'
-                    },
-                    {
-                        content: 'blah.blah.blah.blah.blah.blah.',
-                        createdAt: '2019/09/05 20:46'
-                    },
-                    {
-                        content: 'blah.blah.blah.blah.blah.blah.',
-                        createdAt: '2019/09/05 20:46'
-                    },
-                    {
-                        content: 'blah.blah.blah.blah.blah.blah.',
-                        createdAt: '2019/09/05 20:46'
-                    },
-                ],
+                guestBooks : [],
                 loading: false
             }
         },
         computed: {
             noMore() {
-                return true;
+                return this.$store.state.guestBook.isLast;
             },
             disabled() {
                 return this.loading || this.noMore
             }
         },
         methods: {
-            load() {
+            load(page) {
                 this.loading = true;
+                let pageParam = page === undefined ? this.$store.state.guestBook.page : page;
+                console.log(pageParam);
                 setTimeout(() => {
-                    // this.guestBooks.length += 2;
-                    this.loading = false
+                    this.$store.dispatch('getGuestBooks', pageParam).then(() => {
+                        this.guestBooks = this.$store.state.guestBook.contents;
+                        this.loading = false;
+                    });
                 }, 2000)
             },
+
+            inputValidation(value) {
+                if (value === undefined || value.trim() === '') {
+                    return false;
+                }
+
+                if (value.length > 20) {
+                    return false;
+                }
+
+                return value.match(/(<([^>]+)>)/ig) === null;
+            },
+
             open() {
                 this.$prompt('감상평을 남겨주세요', '방명록', {
                     confirmButtonText: '작성',
                     cancelButtonText: '취소',
-                    // inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-                    inputErrorMessage: '글을 작성해주세요'
+                    inputValidator: this.inputValidation,
+                    inputErrorMessage: '잘못된 형식입니다.'
                 }).then(({value}) => {
-                    console.log(value);
-                    this.$message({
-                        type: 'success',
-                        message: '감상평을 작성해주셔서 감사합니다.'
+                    this.$store.dispatch('saveGuestBooks', value).then(() => {
+                        this.load(0);
+                        this.$message({
+                            type: 'success',
+                            message: '감상평을 작성해주셔서 감사합니다.'
+                        });
                     });
                 }).catch(() => {
                     this.$message({
@@ -78,7 +82,16 @@
                     });
                 });
             }
-        }
+        },
+
+        mounted () {
+            this.load(0);
+        },
+
+        beforeRouteUpdate (to, from, next) {
+            next();
+            this.load(0);
+        },
     }
 </script>
 

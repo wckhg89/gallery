@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(collection = "episode")
+@Document(collection = "guestbook")
 public class GuestBook {
 
     @Id
