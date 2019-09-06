@@ -98,6 +98,7 @@ project('gallery-domain') {
 
     dependencies {
         compile('org.springframework.boot:spring-boot-starter-data-mongodb')
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9.3'
         compileOnly 'org.projectlombok:lombok'
         compileOnly("org.springframework.boot:spring-boot-configuration-processor")
 

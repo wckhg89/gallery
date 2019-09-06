@@ -1,5 +1,6 @@
 package com.guppy.gallery.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 public class GuestBook {
 
     @Id
-    private String _id;
+    private String id;
 
     private String content;
 
@@ -25,8 +26,8 @@ public class GuestBook {
     private LocalDateTime createdDate;
 
     @Builder
-    public GuestBook(String _id, String content, LocalDateTime createdDate) {
-        this._id = _id;
+    public GuestBook(String id, String content, LocalDateTime createdDate) {
+        this.id = id;
         this.content = content;
         this.createdDate = createdDate;
     }
