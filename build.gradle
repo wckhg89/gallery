@@ -92,6 +92,10 @@ project(':gallery-web') {
     }
 }
 
+project('gallery-admin') {
+
+}
+
 project('gallery-domain') {
     bootJar { enabled = false }
     jar { enabled = true }

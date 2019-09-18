@@ -1,4 +1,5 @@
 rootProject.name = 'gallery'
 
 include 'gallery-web'
+include 'gallery-admin'
 include 'gallery-domain'
