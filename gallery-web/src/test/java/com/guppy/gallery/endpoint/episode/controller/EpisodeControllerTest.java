@@ -71,9 +71,6 @@ class EpisodeControllerTest {
         // Then
         response.then().statusCode(200);
         response.prettyPrint();
-        // When
-
-        // Then
     }
 
     @Test
