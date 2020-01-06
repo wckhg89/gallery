@@ -9,7 +9,6 @@ const guestBook = {
 
     },
     mutations: {
-
         EMPTY_GUEST_BOOK_CONTENTS: (state) => {
             state.contents = [];
         },
