@@ -15,7 +15,7 @@
                 </div>
                 <el-divider></el-divider>
                 <div>
-                    <div class="item">{{item.idx}}번째, 사진</div>
+                    <div class="item">{{item.index}}번째, 사진</div>
                     <div class="tip">
                         <p>{{item.description}}</p>
                     </div>
