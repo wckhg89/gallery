@@ -3,23 +3,36 @@ version: '3'
 services:
   db:
     image: mongo
+    restart: always
+    container_name: gallery-mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    ports:
+      - 27017:27017
 
   spring:
     build:
       context: .
       dockerfile: docker/spring/Dockerfile
+    container_name: gallery-spring
     depends_on:
+      - db
+    links:
       - db
     environment:
       - DB_HOST=db
       - DB_PORT=27017
       - DB_NAME=gallery
       - WAIT_HOSTS=db:27017
+      - SPRING_PROFILES_ACTIVE=dev
     ports:
       - "8080:8080"
 
   nginx:
     image: nginx
+    container_name: gallery-nginx
     depends_on:
       - spring
     volumes:

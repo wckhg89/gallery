@@ -15,8 +15,8 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/gallery
-      password: root
-      username: example
+      username: root
+      password: example
 logging:
   level:
     root: INFO
@@ -33,6 +33,5 @@ spring:
   profiles: dev
   data:
     mongodb:
-      uri: mongodb://mongo:27017/gallery
-      password: root
-      username: example
+      username: root
+      password: example
