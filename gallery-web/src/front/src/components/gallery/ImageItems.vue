@@ -13,12 +13,12 @@
                         </div>
                     </el-image>
                 </div>
-                <div class="item">
-                    #일상 #몰랏 #펭하
-                </div>
+                <span class="tag" v-for="hashTag in item.hashTags">
+                    {{hashTag}}
+                </span>
                 <el-divider></el-divider>
                 <div>
-                    <div class="item">{{item.index}}번째, 사진</div>
+                    <div class="item">{{item.index + 1}}번째, 사진</div>
                     <div class="tip">
                         <p>{{item.description}}</p>
                     </div>
@@ -103,6 +103,10 @@
         margin: 10px 0;
         font-size: 12px;
         line-height: 2.0em;
+    }
+    .tag {
+        color: #F56C6C;
+        font-size: 13px;
     }
     .item {
         opacity: 0.8;

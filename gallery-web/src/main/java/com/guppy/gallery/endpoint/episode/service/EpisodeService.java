@@ -45,6 +45,7 @@ public class EpisodeService {
                                             .imagePath("/images/" + index)
                                             .src(it.getSrc())
                                             .description(it.getDescription())
+                                            .hashTags(it.getHashTags())
                                             .build();
                                 }).collect(toList()))
                         .build())

@@ -32,13 +32,15 @@ public class EpisodeDto {
         private String imagePath;
         private String src;
         private String description;
+        private List<String> hashTags;
 
         @Builder
-        public Image(int index, String imagePath, String src, String description) {
+        public Image(int index, String imagePath, String src, String description, List<String> hashTags) {
             this.index = index;
             this.imagePath = imagePath;
             this.src = src;
             this.description = description;
+            this.hashTags = hashTags;
         }
     }
 }
