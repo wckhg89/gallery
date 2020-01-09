@@ -61,6 +61,10 @@
         padding: 0;
         margin: 0;
     }
+    .item {
+        margin-top: 10px;
+        margin-right: 40px;
+    }
     .item img {
         border-radius: 5px;
         width: 100%;

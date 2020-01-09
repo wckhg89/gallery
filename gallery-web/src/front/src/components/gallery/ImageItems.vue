@@ -13,6 +13,9 @@
                         </div>
                     </el-image>
                 </div>
+                <div class="item">
+                    #일상 #몰랏 #펭하
+                </div>
                 <el-divider></el-divider>
                 <div>
                     <div class="item">{{item.index}}번째, 사진</div>

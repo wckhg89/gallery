@@ -40,11 +40,13 @@ public class Episode {
     public static class Image {
         private String src;
         private String description;
+        private List<String> hashTags;
 
         @Builder
-        public Image(String src, String description) {
+        public Image(String src, String description, List<String> hashTags) {
             this.src = src;
             this.description = description;
+            this.hashTags = hashTags;
         }
     }
 }
