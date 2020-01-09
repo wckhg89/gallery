@@ -16,7 +16,7 @@ nvm install 10.16.3
 
 # docker
 sudo yum install -y docker
-service docker start
+sudo service docker start
 
 
 # docker-compose
