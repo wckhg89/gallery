@@ -13,9 +13,11 @@
                         </div>
                     </el-image>
                 </div>
-                <span class="tag" v-for="hashTag in item.hashTags">
-                    {{hashTag}}
-                </span>
+                <div>
+                    <span class="tag" v-for="hashTag in item.hashTags">
+                        {{hashTag}}
+                    </span>
+                </div>
                 <el-divider></el-divider>
                 <div>
                     <div class="item">{{item.index + 1}}번째, 사진</div>
@@ -45,12 +47,14 @@
             },
 
             resizeLayout() {
+                console.log(this.$el)
                 if (this.isMobileAgent ()) {
                     this.carouselHeight = window.innerHeight + 150 + 'px';
                     return;
                 }
                 this.carouselHeight = window.innerHeight + 300 + 'px';
             },
+
 
             fetchData() {
                 this.loading = true;
@@ -62,6 +66,10 @@
                     this.resizeLayout();
                     this.loading =false;
                 }, 500);
+            },
+
+            next () {
+                this.$refs.carousel.next
             },
 
             setActiveItem(idx) {
