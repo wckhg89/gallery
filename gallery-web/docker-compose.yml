@@ -6,6 +6,7 @@ services:
     restart: always
     container_name: gallery-mongodb
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./init-user.js:/docker-entrypoint-initdb.d/init-user.js:ro
       - '/home/ec2-user/data/db:/data/db'
     environment:
@@ -20,6 +21,8 @@ services:
       context: .
       dockerfile: docker/spring/Dockerfile
     container_name: gallery-spring
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - db
     links:
@@ -38,6 +41,7 @@ services:
     depends_on:
       - spring
     volumes:
+      - /etc/localtime:/etc/localtime:ro
       - ./docker/nginx/app.conf.template:/etc/nginx/conf.d/app.conf.template
     ports:
       - "80:80"
