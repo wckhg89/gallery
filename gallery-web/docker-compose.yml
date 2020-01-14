@@ -5,8 +5,13 @@ services:
     image: mongo
     restart: always
     container_name: gallery-mongodb
+    volumes:
+      - ./init-user.js:/docker-entrypoint-initdb.d/init-user.js:ro
+      - type: bind
+        source: /home/ec2-user/data/db
+        target: /data/db
     environment:
-      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_DATABASE=gallery
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=example
     ports:
@@ -25,7 +30,6 @@ services:
       - DB_HOST=db
       - DB_PORT=27017
       - DB_NAME=gallery
-      - WAIT_HOSTS=db:27017
       - SPRING_PROFILES_ACTIVE=dev
     ports:
       - "8080:8080"
