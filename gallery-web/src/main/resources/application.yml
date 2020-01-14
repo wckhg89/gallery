@@ -33,5 +33,5 @@ spring:
   profiles: dev
   data:
     mongodb:
-      username: root
-      password: example
+      username: guppy
+      password: guppykang
