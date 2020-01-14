@@ -7,9 +7,7 @@ services:
     container_name: gallery-mongodb
     volumes:
       - ./init-user.js:/docker-entrypoint-initdb.d/init-user.js:ro
-      - type: bind
-        source: /home/ec2-user/data/db
-        target: /data/db
+      - '/home/ec2-user/data/db:/data/db'
     environment:
       - MONGO_INITDB_DATABASE=gallery
       - MONGO_INITDB_ROOT_USERNAME=root
