@@ -40,7 +40,6 @@
             load(page) {
                 this.loading = true;
                 let pageParam = page === undefined ? this.$store.state.guestBook.page : page;
-                console.log(pageParam);
                 setTimeout(() => {
                     this.$store.dispatch('getGuestBooks', pageParam).then(() => {
                         this.guestBooks = this.$store.state.guestBook.contents;

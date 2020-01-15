@@ -47,7 +47,6 @@
             },
 
             resizeLayout() {
-                console.log(this.$el)
                 if (this.isMobileAgent ()) {
                     this.carouselHeight = window.innerHeight + 150 + 'px';
                     return;
@@ -66,10 +65,6 @@
                     this.resizeLayout();
                     this.loading =false;
                 }, 500);
-            },
-
-            next () {
-                this.$refs.carousel.next
             },
 
             setActiveItem(idx) {

@@ -14,7 +14,6 @@ const guestBook = {
         },
 
         SET_GUEST_BOOK_CONTENTS: (state, contents) => {
-            console.log(state.contents);
             state.contents = _.concat(state.contents, contents);
         },
 
