@@ -21,8 +21,6 @@ services:
       context: .
       dockerfile: docker/spring/Dockerfile
     container_name: gallery-spring
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
     depends_on:
       - db
     links:

@@ -1,5 +1,12 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
+
+# Timezone 보정
+RUN apk add tzdata
+RUN cp /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+RUN echo "Asia/Seoul" > /etc/timezone
+ENV LANG=ko_KR.UTF-8
+
 COPY /build/libs/*.jar /app/gallery.jar
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
 RUN chmod +x /wait
