@@ -1,5 +1,7 @@
 <template>
-    <el-menu class="el-menu-demo" mode="horizontal" active-text-color="#F56C6C">
+    <el-menu class="el-menu-demo"
+             mode="horizontal"
+             active-text-color="#F56C6C">
         <el-submenu index="1">
             <template slot="title">Gallery</template>
             <el-menu-item v-for="episode in episodes" :index="episode.episodeId">
@@ -20,7 +22,7 @@
         name: "NavHeader",
         data() {
             return {
-                episodes: []
+                episodes: [],
             }
         },
 
@@ -37,7 +39,8 @@
             this.fetchData();
         },
 
-        created () {
+
+        mounted() {
             this.fetchData()
         }
     }
