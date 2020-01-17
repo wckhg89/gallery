@@ -1,19 +1,15 @@
 <template>
     <el-menu class="el-menu-demo"
              mode="horizontal"
+             :router="true"
+             :default-active="$route.path"
              active-text-color="#F56C6C">
-        <el-submenu index="1">
+        <el-menu-item index="/">Home</el-menu-item>
+        <el-submenu index="/episode">
             <template slot="title">Gallery</template>
-            <el-menu-item v-for="episode in episodes" :index="episode.episodeId">
-                <router-link :to="episode.episodePath">{{episode.episodeName}}</router-link>
-            </el-menu-item>
+            <el-menu-item v-for="episode in episodes" :index="episode.episodePath">{{episode.episodeName}}</el-menu-item>
         </el-submenu>
-        <el-menu-item index="2">
-            <el-divider direction="vertical"></el-divider>
-        </el-menu-item>
-        <el-menu-item index="3">
-            <router-link to="/guestbook">GuestBook</router-link>
-        </el-menu-item>
+        <el-menu-item index="/guestbook">GuestBook</el-menu-item>
     </el-menu>
 </template>
 
@@ -39,10 +35,11 @@
             this.fetchData();
         },
 
-
         mounted() {
-            this.fetchData()
+            this.fetchData();
         }
+
+
     }
 </script>
 
@@ -51,11 +48,8 @@
         text-decoration: none;
         color: #909399
     }
-    .router-link-active {
-        color: #F56C6C !important;
-    }
 
-    .router-link-exact-active {
-        color: #F56C6C !important;
-    }
+    /*.router-link-exact-active {*/
+    /*    color: #F56C6C !important;*/
+    /*}*/
 </style>
