@@ -1,10 +1,12 @@
 <template>
-    <el-menu class="el-menu-demo"
+    <el-menu class="el-menu-demo nav-style"
              mode="horizontal"
              :router="true"
              :default-active="$route.path"
              active-text-color="#F56C6C">
-        <el-menu-item index="/">Home</el-menu-item>
+        <el-menu-item index="/">
+            <i class="el-icon-s-home"></i>
+        </el-menu-item>
         <el-submenu index="/episode">
             <template slot="title">Gallery</template>
             <el-menu-item v-for="episode in episodes" :index="episode.episodePath">{{episode.episodeName}}</el-menu-item>
@@ -44,12 +46,11 @@
 </script>
 
 <style scoped>
+    .nav-style {
+        margin-left: -10px;
+    }
     li a {
         text-decoration: none;
         color: #909399
     }
-
-    /*.router-link-exact-active {*/
-    /*    color: #F56C6C !important;*/
-    /*}*/
 </style>
