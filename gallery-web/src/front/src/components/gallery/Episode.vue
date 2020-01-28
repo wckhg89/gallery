@@ -1,7 +1,7 @@
 <template>
     <div :v-loading=loading style="">
         <Waterfall :gutterWidth="10"
-                   :gutterHeight="10"
+                   :gutterHeight="15"
                    :minCol="2"
                    :maxCol="8"
                    :resizable="true"
