@@ -1,13 +1,13 @@
 <template>
-    <div :v-loading=loading>
-        <Waterfall :gutterWidth="1"
-                   :gutterHeight="10"
+    <div :v-loading=loading style="">
+        <Waterfall :gutterWidth="10"
+                   :gutterHeight="2"
                    :minCol="2"
-                   :maxCol="5"
+                   :maxCol="8"
                    :resizable="true"
         >
             <WaterfallItem v-for="item in episode.images" :key="item.idx"
-                           :width="180"
+                           :width="150"
                            class="item fadeIn animated">
                 <router-link :to="item.imagePath">
                     <img :src="item.src" alt="이미지 없음">
@@ -34,20 +34,6 @@
             }
         },
         methods: {
-            isMobileAgent () {
-                return /iPhone|iPod|Android/i.test(navigator.userAgent);
-
-            },
-
-            resizeLayout() {
-                if (this.isMobileAgent ()) {
-                    this.itemWidth = 150;
-                    console.log(this.itemWidth);
-                    return;
-                }
-                this.itemWidth = 250;
-            },
-
             fetchData() {
                 this.loading = true;
                 this.$store.dispatch('getEpisodeDetail', this.$route.params.id).then(() => {
@@ -56,7 +42,6 @@
                     this.setImagePath();
                 });
                 setTimeout(() => {
-                    this.resizeLayout();
                     this.loading =false;
                 }, 500);
             },
@@ -83,10 +68,6 @@
     * {
         padding: 0;
         margin: 0;
-    }
-    .item {
-        margin-top: 10px;
-        margin-right: 40px;
     }
     .item img {
         border-radius: 5px;
