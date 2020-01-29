@@ -22,8 +22,8 @@
         data() {
             return {
                 url: undefined,
-                mobileImageUrl: 'https://pbs.twimg.com/media/DVjusPvU0AAMGbX.jpg',
-                desktopImageUrl: 'https://post-phinf.pstatic.net/MjAxOTAzMTlfMTAg/MDAxNTUyOTg5NTUzNjMy.EtBilxTG3zh5354ed6Zokv9p1z6DyEpnA-P-G0DI9_Ug.yLCoGj8HYW2Knnce-j871DYhvS7dTL0w2RCRhnFX0A8g.JPEG/BBUU5kz-horz.jpg?type=w1200',
+                mobileImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img.jpg',
+                desktopImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img.jpg',
             }
         },
         methods: {
