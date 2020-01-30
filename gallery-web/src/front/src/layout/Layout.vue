@@ -6,15 +6,16 @@
         <el-main>
             <router-view></router-view>
         </el-main>
-        <el-footer>Guppy</el-footer>
+        <el-footer>ⓒ 2020. guppy.kang All Rights Reserved</el-footer>
     </el-container>
 </template>
 
 <style scoped>
     footer {
-        position: relative;
-        /*left: 0;*/
-        /*bottom: 0;*/
+        font-size: 5px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
         background: #f9fafa;
         border-top: 1px solid #eef0f0 !important;
         margin-top: -1px;
