@@ -45,7 +45,7 @@
                         this.guestBooks = this.$store.state.guestBook.contents;
                         this.loading = false;
                     });
-                }, 2000)
+                }, 500)
             },
 
             inputValidation(value) {

@@ -1,7 +1,7 @@
 <template>
     <div class="image-div">
         <el-card :body-style="{ padding: '0px' }">
-            <router-link to="/episode/2">
+            <router-link to="/episode/1">
                 <el-image class="image-item"
                           :src="url"
                           fit="fill"
