@@ -12,9 +12,9 @@
 
 <style scoped>
     footer {
-        position: absolute;
-        left: 0;
-        bottom: 0;
+        position: relative;
+        /*left: 0;*/
+        /*bottom: 0;*/
         background: #f9fafa;
         border-top: 1px solid #eef0f0 !important;
         margin-top: -1px;
