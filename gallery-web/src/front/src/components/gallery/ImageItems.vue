@@ -6,6 +6,8 @@
               paginationActiveColor="#F56C6C"
               paginationColor="#909399"
               paginationPosition="bottom-overlay"
+              paginationPadding="5"
+              paginationSize="5"
               :mouse-drag="true">
         <slide v-for="item in images">
             <div class="image">
