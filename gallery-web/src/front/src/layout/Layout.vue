@@ -11,6 +11,9 @@
 </template>
 
 <style scoped>
+    main {
+        margin-bottom: 5%;
+    }
     footer {
         font-size: 5px;
         position: fixed;
@@ -18,10 +21,10 @@
         width: 100%;
         background: #f9fafa;
         border-top: 1px solid #eef0f0 !important;
-        margin-top: -1px;
+        /*margin-top: -1px;*/
         display: block;
         text-align: center;
-        padding: 13px 0;
+        padding: 20px 0;
     }
 </style>
 

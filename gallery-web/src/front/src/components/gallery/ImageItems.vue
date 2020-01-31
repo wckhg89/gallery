@@ -1,6 +1,6 @@
 <template>
     <carousel :per-page="1"
-              :centerMode="true"
+              :centerMode="false"
               :navigateTo="parseInt($route.params.imageId)"
               :paginationEnabled="true"
               paginationActiveColor="#F56C6C"
@@ -9,7 +9,9 @@
               :mouse-drag="true">
         <slide v-for="item in images">
             <div class="image">
-                <el-image :src="item.src" fit="fill">
+                <el-image :src="item.src"
+                          :imageHeight="carouselHeight"
+                          fit="fill">
                     <div slot="error" class="image-slot">
                         <i class="el-icon-picture-outline"></i>
                     </div>
@@ -44,14 +46,10 @@
             return {
                 loading: true,
                 images: [],
+                carouselHeight: undefined
             }
         },
         methods: {
-            isMobileAgent() {
-                return /iPhone|iPod|Android/i.test(navigator.userAgent);
-
-            },
-
             fetchData() {
                 this.loading = true;
                 this.$store.dispatch('getEpisodeDetail', this.$route.params.episodeId).then(() => {

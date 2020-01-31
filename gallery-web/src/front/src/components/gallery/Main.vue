@@ -1,17 +1,15 @@
 <template>
     <div class="image-div">
-        <el-card :body-style="{ padding: '0px' }">
-            <router-link to="/episode/1">
-                <el-image class="image-item"
-                          :src="url"
-                          fit="fill"
-                          :lazy=true>
-                    <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </el-image>
-            </router-link>
-        </el-card>
+        <router-link to="/episode/1">
+            <el-image class="image-item"
+                      :src="url"
+                      fit="fill"
+                      :lazy=true>
+                <div slot="error" class="image-slot">
+                    <i class="el-icon-picture-outline"></i>
+                </div>
+            </el-image>
+        </router-link>
     </div>
 
 </template>
@@ -49,10 +47,9 @@
 <style scoped>
     .image-div {
         text-align: center;
-        margin: 10px 10% 10px 10%;
-
+        margin: 20px 10% 50px 10%;
     }
     .image-item {
-        width: 100%;
+        /*width: 100%;*/
     }
 </style>
