@@ -6,13 +6,14 @@
         <el-main>
             <router-view></router-view>
         </el-main>
-        <el-footer>ⓒ 2020. guppy.kang All Rights Reserved</el-footer>
+        <el-footer height="35px">ⓒ 2020. guppy.kang All Rights Reserved</el-footer>
     </el-container>
 </template>
 
 <style scoped>
     main {
         margin-bottom: 5%;
+        overflow-y: scroll;
     }
     footer {
         font-size: 5px;
@@ -24,7 +25,7 @@
         /*margin-top: -1px;*/
         display: block;
         text-align: center;
-        padding: 20px 0;
+        padding: 10px 0;
     }
 </style>
 

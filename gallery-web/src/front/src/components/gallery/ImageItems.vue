@@ -2,12 +2,8 @@
     <carousel :per-page="1"
               :centerMode="false"
               :navigateTo="parseInt($route.params.imageId)"
-              :paginationEnabled="true"
-              paginationActiveColor="#F56C6C"
-              paginationColor="#909399"
-              paginationPosition="bottom-overlay"
-              paginationPadding="5"
-              paginationSize="5"
+              :paginationEnabled="false"
+              :minSwipeDistance=12
               :mouse-drag="true">
         <slide v-for="item in images">
             <div class="image">
