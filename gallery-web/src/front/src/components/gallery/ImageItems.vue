@@ -3,7 +3,7 @@
               :centerMode="false"
               :navigateTo="parseInt($route.params.imageId)"
               :paginationEnabled="false"
-              :minSwipeDistance=12
+              :minSwipeDistance=20
               :mouse-drag="true">
         <slide v-for="item in images">
             <div class="image">
