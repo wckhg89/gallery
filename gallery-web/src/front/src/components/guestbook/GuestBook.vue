@@ -4,7 +4,7 @@
         <el-timeline
                 v-infinite-scroll="load"
                 infinite-scroll-disabled="disabled"
-                infinite-scroll-distance="10"
+                infinite-scroll-distance="5"
         >
             <el-timeline-item
                     v-for="(guestBook, idx) in guestBooks"
