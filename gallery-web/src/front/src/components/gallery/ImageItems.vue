@@ -1,8 +1,13 @@
 <template>
     <carousel :per-page="1"
               :centerMode="false"
-              :navigateTo="parseInt($route.params.imageId)"
-              :paginationEnabled="false"
+              :navigateTo="[$route.params.imageId, true]"
+              :paginationEnabled="true"
+              paginationPosition="top-overlay"
+              :paginationPadding="5"
+              :paginationSize="5"
+              paginationColor="#f9fafa"
+              paginationActiveColor="#F56C6C"
               :minSwipeDistance=20
               :mouse-drag="true">
         <slide v-for="item in images">
@@ -27,6 +32,9 @@
                     <p>{{item.description}}</p>
                 </div>
             </div>
+        </slide>
+        <slide>
+
         </slide>
     </carousel>
 </template>
@@ -66,6 +74,7 @@
         },
 
         mounted() {
+            console.log(this.$route.params.imageId)
             this.fetchData();
         },
     }
