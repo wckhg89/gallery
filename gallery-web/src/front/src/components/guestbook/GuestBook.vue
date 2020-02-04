@@ -14,7 +14,9 @@
                 </el-card>
             </el-timeline-item>
         </el-timeline>
-        <p v-if="loading" class="loading-text">Loading...</p>
+        <p v-if="loading" class="loading-icon">
+            <i class="el-icon-loading"></i>
+        </p>
         <p v-if="noMore" class="loading-text">No more</p>
     </div>
 </template>
@@ -45,7 +47,7 @@
                         this.guestBooks = this.$store.state.guestBook.contents;
                         this.loading = false;
                     });
-                }, 500)
+                }, 1000)
             },
 
             inputValidation(value) {
@@ -95,7 +97,13 @@
 </script>
 
 <style>
+    .loading-icon {
+        font-size: 30px;
+        text-align: center;
+        color: #F56C6C;
+    }
     .loading-text {
+        font-size: 10px;
         text-align: center;
         color: #F56C6C;
     }
