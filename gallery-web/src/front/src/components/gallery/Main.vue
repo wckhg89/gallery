@@ -26,7 +26,7 @@
                 url: undefined,
                 // mobileImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img.jpg',
                 mobileImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img_gallery.jpeg',
-                desktopImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img_gallery.jpeg',
+                desktopImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/desktop_main.jpeg',
             }
         },
         methods: {

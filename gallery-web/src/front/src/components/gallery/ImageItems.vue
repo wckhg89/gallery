@@ -2,7 +2,7 @@
     <carousel style="margin-top: -20px"
             :scrollperPage="true"
             :per-page="1"
-            :centerMode="false"
+            :centerMode="true"
             :navigateTo="[$route.params.imageId, true]"
             :paginationEnabled="true"
             paginationPosition="top"
@@ -10,8 +10,10 @@
             :paginationSize="5"
             paginationColor="#909399"
             paginationActiveColor="#F56C6C"
-            :minSwipeDistance=20
-            :mouse-drag="true">
+            :minSwipeDistance=25
+            :mouse-drag="true"
+            :maxPaginationDotCount="5"
+    >
         <slide v-for="item in images">
             <div class="image">
                 <el-image :src="item.src"
@@ -42,7 +44,7 @@
 </template>
 
 <script>
-    import {Carousel, Slide} from 'vue-carousel';
+    import {Carousel, Slide} from 'vue-carousel-guppy';
 
     export default {
         components: {
@@ -69,14 +71,12 @@
                 }, 500);
             },
         },
-
         beforeRouteUpdate(to, from, next) {
             next();
             this.fetchData();
         },
 
         mounted() {
-            console.log(this.$route.params.imageId)
             this.fetchData();
         },
     }
