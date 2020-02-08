@@ -33,9 +33,11 @@
             <el-divider></el-divider>
             <div>
                 <el-badge :value="200" :max="99">
-                    <el-button circle size="mini">
-                        <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:20px"/>
-                    </el-button>
+                    <el-tooltip class="item" effect="light" :content="getRandomLikeContents()" placement="right-start">
+                        <el-button circle size="mini">
+                            <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:20px"/>
+                        </el-button>
+                    </el-tooltip>
                 </el-badge>
                 <div class="tip">
                     <p>{{item.description}}</p>
@@ -59,6 +61,14 @@
         name: "ImageItems",
         data() {
             return {
+                likeContents : [
+                    '사진 예뻐요!',
+                    '보기 좋아요!',
+                    '행복하세요!',
+                    '예뻐 보여요!',
+                    '잘 어울려요!',
+                    '행복한 신혼되세요!',
+                ],
                 loading: true,
                 images: [],
                 carouselHeight: undefined
@@ -74,6 +84,9 @@
                 setTimeout(() => {
                     this.loading = false;
                 }, 500);
+            },
+            getRandomLikeContents () {
+                return this.likeContents[Math.floor(Math.random() * this.likeContents.length)];
             },
             back () {
                 this.$router.go(-1);
