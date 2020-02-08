@@ -3,6 +3,7 @@
         <div class="image-div">
             <router-link to="/episode/1">
                 <el-image class="image-item"
+                          v-bind:class="{desktop : isDesktop}"
                           :src="url"
                           fit="fill"
                           :lazy=true>
@@ -26,7 +27,9 @@
                 url: undefined,
                 // mobileImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img.jpg',
                 mobileImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img_gallery.jpeg',
-                desktopImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/desktop_main.jpeg',
+                desktopImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/main_img_gallery.jpeg',
+                // desktopImageUrl: 'https://d2i2o4t1c9odyj.cloudfront.net/desktop_main_img.jpeg',
+                isDesktop: false,
             }
         },
         methods: {
@@ -37,10 +40,12 @@
             determineImageUrl() {
                 if (this.isMobileAgent ()) {
                     this.url = this.mobileImageUrl;
+                    this.isDesktop = false;
                     return;
                 }
 
                 this.url = this.desktopImageUrl;
+                this.isDesktop = true;
             }
         },
         mounted() {
@@ -50,6 +55,10 @@
 </script>
 
 <style scoped>
+    .desktop {
+        width: 35%;
+        height: 50%;
+    }
     .image-div {
         text-align: center;
         margin: 20px 10% 35px 10%;

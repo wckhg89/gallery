@@ -10,7 +10,7 @@
             :paginationSize="5"
             paginationColor="#909399"
             paginationActiveColor="#F56C6C"
-            :minSwipeDistance=25
+            :minSwipeDistance=60
             :mouse-drag="true"
             :maxPaginationDotCount="5"
     >
@@ -36,9 +36,9 @@
                     <p>{{item.description}}</p>
                 </div>
             </div>
-        </slide>
-        <slide>
-
+            <div style="float: right;">
+                <el-button type="danger" icon="el-icon-back" circle size='mini' @click="back"></el-button>
+            </div>
         </slide>
     </carousel>
 </template>
@@ -70,6 +70,9 @@
                     this.loading = false;
                 }, 500);
             },
+            back () {
+                this.$router.go(-1);
+            }
         },
         beforeRouteUpdate(to, from, next) {
             next();
