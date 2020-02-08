@@ -10,7 +10,7 @@
             :paginationSize="5"
             paginationColor="#909399"
             paginationActiveColor="#F56C6C"
-            :minSwipeDistance=65
+            :minSwipeDistance=70
             :mouse-drag="true"
             :maxPaginationDotCount="5"
     >
@@ -33,7 +33,11 @@
             <el-divider></el-divider>
             <div>
                 <el-badge :value="200" :max="99">
-                    <el-tooltip class="item" effect="light" :content="getRandomLikeContents()" placement="right-start">
+                    <el-tooltip class="item"
+                                effect="light"
+                                :content="getRandomLikeContents()"
+                                :hide-after=600
+                                placement="right-start">
                         <el-button circle size="mini">
                             <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:20px"/>
                         </el-button>
