@@ -10,7 +10,7 @@
             :paginationSize="5"
             paginationColor="#909399"
             paginationActiveColor="#F56C6C"
-            :minSwipeDistance=60
+            :minSwipeDistance=65
             :mouse-drag="true"
             :maxPaginationDotCount="5"
     >
@@ -29,15 +29,20 @@
                     {{hashTag}}
                 </span>
             </div>
+            <div class="item">{{item.index + 1}}번째, 사진</div>
             <el-divider></el-divider>
             <div>
-                <div class="item">{{item.index + 1}}번째, 사진</div>
+                <el-badge :value="200" :max="99">
+                    <el-button circle size="mini">
+                        <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:20px"/>
+                    </el-button>
+                </el-badge>
                 <div class="tip">
                     <p>{{item.description}}</p>
                 </div>
             </div>
             <div style="float: right;">
-                <el-button type="danger" icon="el-icon-back" circle size='mini' @click="back"></el-button>
+                <el-button icon="el-icon-back" circle size='mini' @click="back"></el-button>
             </div>
         </slide>
     </carousel>
