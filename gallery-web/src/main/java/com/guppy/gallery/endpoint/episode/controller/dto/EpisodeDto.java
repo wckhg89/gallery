@@ -33,14 +33,16 @@ public class EpisodeDto {
         private String src;
         private String description;
         private List<String> hashTags;
+        private long likeCount;
 
         @Builder
-        public Image(int index, String imagePath, String src, String description, List<String> hashTags) {
+        public Image(int index, String imagePath, String src, String description, List<String> hashTags, long likeCount) {
             this.index = index;
             this.imagePath = imagePath;
             this.src = src;
             this.description = description;
             this.hashTags = hashTags;
+            this.likeCount = likeCount;
         }
     }
 }

@@ -33,6 +33,10 @@ public class Episode {
 
     }
 
+    public void increaseImageLikeCount (int imageIndex) {
+        this.images.get(imageIndex).increaseLikeCount();
+    }
+
     @ToString
     @Getter
     @Setter
@@ -41,12 +45,18 @@ public class Episode {
         private String src;
         private String description;
         private List<String> hashTags;
+        private long likeCount;
 
         @Builder
-        public Image(String src, String description, List<String> hashTags) {
+        public Image(String src, String description, List<String> hashTags, long likeCount) {
             this.src = src;
             this.description = description;
             this.hashTags = hashTags;
+            this.likeCount = likeCount;
+        }
+
+        public void increaseLikeCount () {
+            this.likeCount += 1L;
         }
     }
 }

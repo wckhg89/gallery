@@ -1,5 +1,6 @@
 package com.guppy.gallery.endpoint.episode.service;
 
+import com.guppy.gallery.domain.Episode;
 import com.guppy.gallery.endpoint.episode.controller.dto.EpisodeDto;
 import com.guppy.gallery.endpoint.episode.controller.dto.EpisodeInfoDto;
 import com.guppy.gallery.repository.EpisodeRepository;
@@ -46,10 +47,20 @@ public class EpisodeService {
                                             .src(it.getSrc())
                                             .description(it.getDescription())
                                             .hashTags(it.getHashTags())
+                                            .likeCount(it.getLikeCount())
                                             .build();
                                 }).collect(toList()))
                         .build())
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    public long saveEpisode (long episodeId, int imageIndex) {
+        Episode episode = episodeRepository.findById(episodeId)
+                .orElseThrow(IllegalArgumentException::new);
+
+        episode.increaseImageLikeCount(imageIndex);
+
+        return episodeRepository.save(episode).getId();
     }
 
 }
