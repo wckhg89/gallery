@@ -13,6 +13,7 @@
             :minSwipeDistance=70
             :mouse-drag="true"
             :maxPaginationDotCount="5"
+            @page-change="onPageChange"
     >
         <slide v-for="item in images">
             <div class="image">
@@ -36,10 +37,12 @@
                     <el-tooltip class="item"
                                 effect="light"
                                 :content="getRandomLikeContents()"
-                                :hide-after=600
+                                :hide-after=2000
                                 placement="right-start">
-                        <el-button circle size="mini" @click="saveData">
-                            <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:20px"/>
+                        <el-button size="mini" @click="saveData(item.index)">
+                            <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:25px;height:25px"
+                                      class="infinite_rotating_logo"
+                            />
                         </el-button>
                     </el-tooltip>
                 </el-badge>
@@ -90,27 +93,32 @@
                 }, 500);
             },
 
-            saveData() {
-                this.loading = true;;
+            saveData(itemIndex) {
+                this.loading = true;
                 this.$store.dispatch('saveEpisodeDetail', {
                     episodeId : this.$route.params.episodeId,
-                    imageId : this.$route.params.imageId
+                    imageId : itemIndex
                 }).then(() => {
-                    this.fetchData()
+                    this.fetchData();
                 });
+            },
 
-                setTimeout(() => {
-                    this.loading =false;
-                }, 200);
+            onPageChange (currentPage) {
+                this.$router.push({
+                    path : '/episode/' + this.$route.params.episodeId + '/images/' + currentPage
+                })
             },
 
             getRandomLikeContents () {
                 return this.likeContents[Math.floor(Math.random() * this.likeContents.length)];
             },
             back () {
-                this.$router.go(-1);
+                this.$router.push({
+                    path : '/episode/' + this.$route.params.episodeId
+                })
             }
         },
+
         beforeRouteUpdate(to, from, next) {
             next();
             this.fetchData();
@@ -148,5 +156,16 @@
         color: #F56C6C;
         font-size: 13px;
         line-height: 1.5em;
+    }
+
+    .infinite_rotating_logo{
+        animation: rotate_image 5s linear infinite;
+        transform-origin: 50% 50%;
+    }
+
+    @keyframes rotate_image{
+        100% {
+            transform: rotate(360deg);
+        }
     }
 </style>
