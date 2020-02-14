@@ -32,13 +32,13 @@
             <div class="item">{{item.index + 1}}번째, 사진</div>
             <el-divider></el-divider>
             <div>
-                <el-badge :value="200" :max="99">
+                <el-badge :value="item.likeCount" :max="99">
                     <el-tooltip class="item"
                                 effect="light"
                                 :content="getRandomLikeContents()"
                                 :hide-after=600
                                 placement="right-start">
-                        <el-button circle size="mini">
+                        <el-button circle size="mini" @click="saveData">
                             <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:20px"/>
                         </el-button>
                     </el-tooltip>
@@ -89,6 +89,21 @@
                     this.loading = false;
                 }, 500);
             },
+
+            saveData() {
+                this.loading = true;;
+                this.$store.dispatch('saveEpisodeDetail', {
+                    episodeId : this.$route.params.episodeId,
+                    imageId : this.$route.params.imageId
+                }).then(() => {
+                    this.fetchData()
+                });
+
+                setTimeout(() => {
+                    this.loading =false;
+                }, 200);
+            },
+
             getRandomLikeContents () {
                 return this.likeContents[Math.floor(Math.random() * this.likeContents.length)];
             },
