@@ -18,19 +18,13 @@
         <slide v-for="item in images">
             <div class="image">
                 <el-image :src="item.src"
-                          :imageHeight="carouselHeight"
-                          fit="fill">
+                          v-bind:class="{desktop : isDesktop}"
+                          fit="scale-down">
                     <div slot="error" class="image-slot">
                         <i class="el-icon-picture-outline"></i>
                     </div>
                 </el-image>
             </div>
-            <div>
-                <span class="tag" v-for="hashTag in item.hashTags">
-                    {{hashTag}}
-                </span>
-            </div>
-            <div class="item">{{item.index + 1}}번째, 사진</div>
             <el-divider></el-divider>
             <div>
                 <el-badge :value="item.likeCount" :max="99">
@@ -39,13 +33,19 @@
                                 :content="getRandomLikeContents()"
                                 :hide-after=2000
                                 placement="right-start">
-                        <el-button size="mini" @click="saveData(item.index)">
-                            <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png" style="width:25px;height:25px"
-                                      class="infinite_rotating_logo"
-                            />
-                        </el-button>
+
+                        <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png"
+                                  style="width:25px;height:25px"
+                                  class="infinite_rotating_logo"
+                                  @click="saveData(item.index)"
+                        />
                     </el-tooltip>
                 </el-badge>
+                <div style="margin-top: 15px">
+                    <span class="tag" v-for="hashTag in item.hashTags">
+                        {{hashTag}}
+                    </span>
+                </div>
                 <div class="tip">
                     <p>{{item.description}}</p>
                 </div>
@@ -78,7 +78,7 @@
                 ],
                 loading: true,
                 images: [],
-                carouselHeight: undefined
+                isDesktop: false,
             }
         },
         methods: {
@@ -116,21 +116,43 @@
                 this.$router.push({
                     path : '/episode/' + this.$route.params.episodeId
                 })
+            },
+            isMobileAgent () {
+                return /iPhone|iPod|Android/i.test(navigator.userAgent);
+
+            },
+            determineImageUrl() {
+                if (this.isMobileAgent ()) {
+                    this.url = this.mobileImageUrl;
+                    this.isDesktop = false;
+                    return;
+                }
+
+                this.url = this.desktopImageUrl;
+                this.isDesktop = true;
             }
+
         },
 
         beforeRouteUpdate(to, from, next) {
             next();
             this.fetchData();
+            this.determineImageUrl();
         },
 
         mounted() {
             this.fetchData();
+            this.determineImageUrl();
         },
     }
 </script>
 
 <style scoped>
+    .desktop {
+        width: 60%;
+        height: 100%;
+    }
+
     .image {
         text-align: center;
     }
