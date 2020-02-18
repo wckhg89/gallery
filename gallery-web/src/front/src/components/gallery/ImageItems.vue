@@ -18,8 +18,7 @@
         <slide v-for="item in images">
             <div class="image">
                 <el-image :src="item.src"
-                          v-bind:class="{desktop : isDesktop}"
-                          fit="scale-down">
+                          fit="fill">
                     <div slot="error" class="image-slot">
                         <i class="el-icon-picture-outline"></i>
                     </div>
@@ -33,7 +32,6 @@
                                 :content="getRandomLikeContents()"
                                 :hide-after=2000
                                 placement="right-start">
-
                         <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/flower_image.png"
                                   style="width:25px;height:25px"
                                   class="infinite_rotating_logo"
@@ -148,11 +146,6 @@
 </script>
 
 <style scoped>
-    .desktop {
-        width: 60%;
-        height: 100%;
-    }
-
     .image {
         text-align: center;
     }

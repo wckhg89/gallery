@@ -3,7 +3,9 @@
              mode="horizontal"
              :router="true"
              :default-active="$route.path"
-             active-text-color="#F56C6C">
+             active-text-color="#F56C6C"
+             style="overflow-x: scroll"
+    >
         <el-menu-item index="/">
             <i class="el-icon-s-home"></i>
         </el-menu-item>
@@ -12,6 +14,7 @@
             <el-menu-item v-for="episode in episodes" :index="episode.episodePath">{{episode.episodeName}}</el-menu-item>
         </el-submenu>
         <el-menu-item index="/guestbook">GuestBook</el-menu-item>
+        <el-menu-item index="/location">Location</el-menu-item>
     </el-menu>
 </template>
 
