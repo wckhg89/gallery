@@ -11,9 +11,11 @@
 </template>
 
 <style scoped>
+    header {
+        overflow-x: scroll;
+    }
     main {
         margin-bottom: 5%;
-        overflow-y: scroll;
     }
     footer {
         font-size: 5px;
