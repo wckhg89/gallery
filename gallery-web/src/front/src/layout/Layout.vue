@@ -11,9 +11,6 @@
 </template>
 
 <style scoped>
-    header {
-        overflow-x: scroll;
-    }
     main {
         margin-bottom: 5%;
     }
@@ -24,7 +21,6 @@
         width: 100%;
         background: #f9fafa;
         border-top: 1px solid #eef0f0 !important;
-        /*margin-top: -1px;*/
         display: block;
         text-align: center;
         padding: 10px 0;

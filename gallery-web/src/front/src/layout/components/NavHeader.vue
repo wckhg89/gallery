@@ -9,11 +9,11 @@
             <i class="el-icon-s-home"></i>
         </el-menu-item>
         <el-submenu index="/episode">
-            <template slot="title">갤러리</template>
+            <template slot="title">Gallery</template>
             <el-menu-item v-for="episode in episodes" :index="episode.episodePath">{{episode.episodeName}}</el-menu-item>
         </el-submenu>
-        <el-menu-item index="/guestbook">방명록</el-menu-item>
-        <el-menu-item index="/location">위치</el-menu-item>
+        <el-menu-item index="/guestbook">GuestBook</el-menu-item>
+        <el-menu-item index="/location">Location</el-menu-item>
     </el-menu>
 </template>
 
@@ -50,8 +50,14 @@
 <style scoped>
     .nav-style {
         margin-left: -10px;
-        overflow-scrolling: touch;
-        overflow-x: scroll;
+        overflow-x: auto;
+        white-space:nowrap;
+        display: inline-block;
+    }
+
+    li {
+        float: none !important;
+        display: inline-block;
     }
     li a {
         text-decoration: none;
