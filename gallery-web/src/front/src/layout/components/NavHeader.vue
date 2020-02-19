@@ -1,5 +1,6 @@
 <template>
     <el-menu class="el-menu-demo nav-style"
+             v-bind:style="{width : navWidth}"
              mode="horizontal"
              :router="true"
              :default-active="$route.path"
@@ -17,12 +18,15 @@
     </el-menu>
 </template>
 
+
+
 <script>
     export default {
         name: "NavHeader",
         data() {
             return {
                 episodes: [],
+                navWidth: '0px',
             }
         },
 
@@ -31,6 +35,7 @@
                 this.$store.dispatch('getEpisodeInfos').then(() => {
                     this.episodes = this.$store.state.episode.info;
                 });
+                this.navWidth = window.innerWidth + 'px';
             },
         },
 
@@ -41,6 +46,7 @@
 
         mounted() {
             this.fetchData();
+
         }
     }
 </script>
