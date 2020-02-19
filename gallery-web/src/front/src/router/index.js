@@ -5,6 +5,7 @@ import Main from "../components/gallery/Main";
 import Episode from "../components/gallery/Episode";
 import ImageItems from "../components/gallery/ImageItems";
 import GuestBook from '../components/guestbook/GuestBook'
+import Location from '../components/location/Location'
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,16 @@ const routes = [
             {
                 path: '/',
                 component: GuestBook,
+            }
+        ]
+    },
+    {
+        path: '/location',
+        component: Layout,
+        children: [
+            {
+                path: '/',
+                component: Location,
             }
         ]
     }

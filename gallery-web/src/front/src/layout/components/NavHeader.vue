@@ -42,8 +42,6 @@
         mounted() {
             this.fetchData();
         }
-
-
     }
 </script>
 
