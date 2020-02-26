@@ -18,8 +18,6 @@
     </el-menu>
 </template>
 
-
-
 <script>
     export default {
         name: "NavHeader",
