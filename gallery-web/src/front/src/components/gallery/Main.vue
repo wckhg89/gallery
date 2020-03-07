@@ -12,9 +12,15 @@
                     </div>
                 </el-image>
             </router-link>
+            <div class="text-div" style="font-size: 20px; margin-bottom: 15px;">
+                강홍구 <p style="font-size: 9px; display: inline-block;">그리고</p> 최지현
+            </div>
         </div>
-        <div class="text-div">
-            4月 12日
+        <div class="text-div" style="font-size: 13px; margin-bottom: 15px;">
+            2020년 4월 12일
+        </div>
+        <div class="text-div" style="font-size: 13px; margin-bottom: 8px;">
+            남산예술원 웨딩홀
         </div>
     </div>
 </template>
@@ -59,12 +65,13 @@
     }
     .image-div {
         text-align: center;
-        margin: 20px 10% 35px 10%;
+        margin: 0px 10% 35px 10%;
     }
     .text-div {
         font-size: 14px;
         font-weight: bold;
         text-align: center;
         color: #F56C6C;
+
     }
 </style>

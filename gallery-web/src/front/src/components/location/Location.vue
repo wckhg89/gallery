@@ -1,6 +1,8 @@
 <template>
     <div class="block">
-        <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/location.jpeg"/>
+        <a href="https://d2i2o4t1c9odyj.cloudfront.net/location.jpeg" target="_blank">
+            <el-image src="https://d2i2o4t1c9odyj.cloudfront.net/location.jpeg"/>
+        </a>
         <el-divider/>
         <el-alert
                 style="margin-bottom: 15px"

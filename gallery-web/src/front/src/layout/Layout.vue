@@ -14,6 +14,7 @@
     main {
         margin-bottom: 5%;
     }
+
     footer {
         font-size: 5px;
         position: fixed;

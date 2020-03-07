@@ -1,4 +1,12 @@
 module.exports = {
+  css: {
+    loaderOptions: {
+      css: {
+        test: /\.css$/,
+        test: /\.woff$/,
+      }
+    }
+  },
   outputDir: '../main/resources/static',
   devServer: {
     port: 3000,

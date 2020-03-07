@@ -5,6 +5,8 @@ import router from './router'
 import Element from 'element-ui'
 import VueCarousel from 'vue-carousel-guppy';
 
+// import './assets/fonts/BMEULJIRO.woff';
+import './assets/css/default.css';
 import 'element-ui/lib/theme-chalk/index.css'
 
 

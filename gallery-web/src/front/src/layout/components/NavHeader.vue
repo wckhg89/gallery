@@ -6,15 +6,15 @@
              :default-active="$route.path"
              active-text-color="#F56C6C"
     >
-        <el-menu-item index="/">
+        <el-menu-item index="/" class="root-menu">
             <i class="el-icon-s-home"></i>
         </el-menu-item>
         <el-submenu index="/episode">
-            <template slot="title">Gallery</template>
+            <template slot="title">갤러리</template>
             <el-menu-item v-for="episode in episodes" :index="episode.episodePath">{{episode.episodeName}}</el-menu-item>
         </el-submenu>
-        <el-menu-item index="/guestbook">GuestBook</el-menu-item>
-        <el-menu-item index="/location">Location</el-menu-item>
+        <el-menu-item index="/guestbook" class="root-menu">방명록</el-menu-item>
+        <el-menu-item index="/location" class="root-menu">오시는길</el-menu-item>
     </el-menu>
 </template>
 
@@ -57,7 +57,7 @@
         display: inline-block;
     }
 
-    li {
+    root-menu li {
         float: none !important;
         display: inline-block;
     }
