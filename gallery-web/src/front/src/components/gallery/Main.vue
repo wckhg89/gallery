@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="text-div" style="font-size: 13px; margin-bottom: 15px;">
-            2020년 4월 12일
+            2020년 4월 12일 오후 2시
         </div>
         <div class="text-div" style="font-size: 13px; margin-bottom: 8px;">
             남산예술원 웨딩홀
